@@ -1,0 +1,123 @@
+index:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eksplorasi Batam</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css" />
+  <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.css" />
+  <link rel="stylesheet" href="https://balladaniel.github.io/leaflet-dataclassification/leaflet-dataclassification.css" />
+
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header id="navbar">
+    <div class="container">
+      <div class="logo">
+        <img src="asset/logo.png" alt="Logo" width="50" />
+        <h1>Batam Land Cover Explorer</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#hero-section">Home</a></li>
+          <li><a href="#map-section">Map</a></li>
+          <li><a href="#data-section">Data</a></li>
+          <li><a href="#author-section">Author</a></li>
+          <li><a href="#footer">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+<section id="hero-section"></section>
+<section class="hero-split">
+  <div class="hero-image"></div>
+  <div class="hero-info">
+    <div class="hero-badge">#Kota Batam</div>
+    <h1 class="hero-title">Eksplorasi Kota Batam Lebih Dekat</h1>
+    <p class="hero-desc">Dapatkan pengetahuan, data spasial, dan peta interaktif Batam untuk mendukung keputusan Anda.</p>
+    <a href="#eksplorasi" class="cta-btn">Lihat Peta</a>
+  </div>
+</section>
+
+
+  <!-- MAP SECTION -->
+  <div id="map-section">
+    <h2>Jelajahi Tutupan Lahan Kota Batam</h2>
+    <div id="map" style="width: 95%; height: 800px; margin: auto;"></div>
+  </div>
+
+  <!-- Data Section -->
+  <section id="data-section">
+    <h2>Informasi Data</h2>
+    <div class="data-grid">
+      <div class="data-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR34Ccbf1noAnjD_y5Cq7a2UBVFw39A4_hMCA&s" alt="Stadion">
+        <div class="description">
+          <h3>Kota Batam</h3>
+          <p>Kota Batam merupakan kota terbesar di Provinsi Kepulauan Riau yang berkembang pesat sebagai pusat industri, perdagangan, dan pariwisata. Pertumbuhan penduduk di Batam sangat tinggi, didorong oleh dua faktor utama yaitu tingginya arus migrasi dan angka kelahiran yang meningkat. Sejak Batam dikembangkan menjadi kawasan industri pada tahun 1970-an, banyak pendatang dari berbagai daerah di Indonesia datang untuk mencari peluang kerja dan kehidupan yang lebih baik</p>
+        </div>
+      </div>
+      <div class="data-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkIOWjzgwY5FMQMKWqzvjwQEV_eAxvIg55_Q&s" alt="Kolam Renang">
+        <div class="description">
+          <h3>Sumber Data</h3>
+          <p>Data tutupan lahan Kota Batam diperoleh menggunakan citra satelit Landsat 8. Klasifikasi tutupan lahan dilakukan dengan metode supervised classification, di mana sampel tiap kelas ditentukan secara manual diseluruh area kota batam.</p>
+        </div>
+      </div>
+      <div class="data-item">
+        <img src="data:image/png;base64,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" alt="Lapangan Basket">
+        <div class="description">
+          <h3>Download Data</h3>
+          <a href="https://drive.google.com/drive/folders/1-EFg_rt4449IP-DYikPjIiKv4ovX88N6?usp=sharing" download="Tutupan_lahan2023.rar">Tutupan Lahan 2023</a><br>
+  <a href="https://drive.google.com/drive/folders/1iSwQf1IPGOfy-nGAv2BztS9JqdRpmcVj?usp=sharing" download="Tutupan_Lahan2018.rar">Tutupan Lahan 2018</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+   
+
+  <!-- AUTHOR SECTION -->
+  <div id="author-section">
+    <div class="author-content">
+      <h2>Tentang Pembuat</h2>
+      <img src="asset/author-picture.JPG" alt="Profile Picture" class="profile-picture" />
+      <div class="author-name">
+        <h3>Dhafin Dwi Wicaksono</h3>
+      </div>
+      <p> Seorang mahasiswa Sains Informasi Geografi di Universitas Pendidikan Indonesia yang memiliki minat dalam pengembangan sistem informasi geografis berbasis web</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div id="footer">
+    <div class="footer-content">
+      <h3>Hubungi Saya</h3>
+      <p>Email: dhafindw@upi.edu</p>
+      <p>Instagram: @dhafin_dwn</p>
+    </div>
+  </div>
+
+  
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+  <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol/dist/L.Control.Locate.min.js"></script>
+  <script src="https://balladaniel.github.io/leaflet-dataclassification/leaflet-dataclassification.js"></script>
+
+  <!-- Your custom scripts -->
+  <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>
